@@ -426,6 +426,7 @@ class Neo4jClient:
                 CALL {{ WITH {NODE_VAR}, row
                     MATCH({NODE_VAR}:`{node_label}` {{id: row.id}}) WHERE row.embedding IS NOT NULL
                     CALL db.create.setNodeVectorProperty({NODE_VAR}, '{embedding_field}', row.{embedding_field})
+                    RETURN {NODE_VAR}
                 }}
                 """,
                 records=records,
